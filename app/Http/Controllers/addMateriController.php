@@ -27,10 +27,10 @@ class addMateriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required',
-            'content' => 'required',
             'kategori' => 'required'
         ]);
+        $data = Kategori::where('mapel',$request->kategori)->get();
+        $post = $data->first()->cover;
         $description = $request->content;
  
         $dom = new DOMDocument();
@@ -47,12 +47,13 @@ class addMateriController extends Controller
             $img->setAttribute('src',$image_name);
         }
         $description = $dom->saveHTML();
+
  
         Mapel::create([
             'judul' => $request->judul,
             'content' => $description,
             'kategori' => $request->kategori,
-            'tumbnail' => $request->tumbnail,
+            'tumbnail' => $post,
         ]);
  
         return redirect('/dashboard');
@@ -62,6 +63,8 @@ class addMateriController extends Controller
     {
         $post = Mapel::find($id);
  
+        $data = Kategori::where('mapel',$request->kategori)->get();
+        $tumbnail = $data->first()->cover;
         $description = $request->content;
  
         $dom = new DOMDocument();
@@ -89,7 +92,7 @@ class addMateriController extends Controller
             'judul' => $request->judul,
             'content' => $description,  
             'kategori' => $request->kategori,
-            'tumbnail' => $request->tumbnail,
+            'tumbnail' => $tumbnail,
         ]);
  
         return redirect('/dashboard');

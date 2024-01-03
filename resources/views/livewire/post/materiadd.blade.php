@@ -78,10 +78,10 @@
 
 <body>
     <div class="bg-[#ededed]">
-        <div class="w-full h-auto pb-[3rem]">
+        <div class="w-full h-screen pb-[3rem]">
             <div class="w-full h-[5rem] bg-blue-950 flex justify-between top-0 z-50 shadow-lg" id="navbar">
                 <div class="w-[10rem] h-auto flex justify-center items-center">
-                    <a href="{{ url('/dashboard') }}">
+                    <a href="{{ url()->previous() }}">
                         <i class="bi bi-arrow-left text-2xl text-white"></i>
                     </a>
                 </div>
@@ -106,7 +106,7 @@
                             @enderror
                         </div>
                         <label for="" class="mt-[1rem] font-semibold text-blue-950 text-lg">Content:</label>
-                        <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="summernote" cols="30" rows="10"></textarea>
+                        <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="summernote" cols="50" rows="100"></textarea>
                         <div class="invalid-feedback">
                             @error('content')
                                 {{ $message }}
@@ -120,17 +120,6 @@
                             </select>
                         <div class="invalid-feedback">
                             @error('kategori')
-                                {{ $message }}
-                            @enderror
-                        </div>
-                        <select name="tumbnail" id="" class="w-[15rem] h-[3rem] bg-blue-950 rounded-[10px] px-4 text-white @error('tumbnail') is-invalid @enderror">
-                            <option value="" selected disabled>===Pilih Tumbnail===</option>
-                            @foreach ($data as $item)
-                                <option value="{{$item->cover}}">{{$item->mapel}}</option>
-                                @endforeach
-                            </select>
-                        <div class="invalid-feedback">
-                            @error('tumbnail')
                                 {{ $message }}
                             @enderror
                         </div>

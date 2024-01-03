@@ -78,7 +78,7 @@
 
 <body>
     <div class="bg-[#ededed]">
-        <div class="w-full h-auto pb-[3rem]">
+        <div class="w-full h-screen pb-[3rem]">
             <div class="w-full h-[5rem] bg-blue-950 flex justify-between top-0 z-50 shadow-lg" id="navbar">
                 <div class="w-[10rem] h-auto flex justify-center items-center">
                     <a href="{{ url('/dashboard') }}">
@@ -112,7 +112,17 @@
                                 {{ $message }}
                             @enderror
                         </div>
-                        <input type="text" class="" name="kategori" value="{{$data->kategori}}">
+                        <select name="kategori" id="" class="w-[15rem] h-[3rem] bg-blue-950 rounded-[10px] px-4 text-white @error('kategori') is-invalid @enderror">
+                            <option value="" selected disabled>===Pilih Mapel===</option>
+                            @foreach ($dataKategori as $item)
+                                <option value="{{$item->mapel}}" class="text-white">{{$item->mapel}}</option>
+                                @endforeach
+                            </select>
+                        <div class="invalid-feedback">
+                            @error('kategori')
+                                {{ $message }}
+                            @enderror
+                        </div>
                         <button type="submit" class="btn btn-lg btn-primary bg-blue-950 my-[1rem]">Submit</button>
                     </form>
                 </div>

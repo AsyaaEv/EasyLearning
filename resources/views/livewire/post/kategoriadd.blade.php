@@ -16,7 +16,7 @@
     </div>
 
     <div class="w-full h-[30rem] bg-white rounded-[10px] shadow-md container mx-auto mt-[3rem]">
-        <div class="container mt-5">
+        <div class=" mt-5">
             <div class="alert @if (!empty(session('alert'))) alert-{{ session('alert') }} @else d-none @endif">
                 @if (!empty(session('alert')))
                     {{ session('msg') }}

@@ -40,4 +40,13 @@ Route::get('/dashboard/kategori/edit/{id}', function($id){
 Route::get('/dashboard/kategori/delete/{id}', function($id){
     return view('posts.kategoridelete', ['id' => $id]);
 });
+Route::get('/dashboard/materi/{id}', function($id){
+    return view('posts.materi', ['id' => $id]);
+});
 
+//kelompok routes
+Route::view('/dashboard/kelompok', 'users.kelompok');
+Route::view('/dashboard/kelompok/add', 'users.kelompokadd');
+Route::get('/dashboard/kelompok/edit/{id}', function($id){
+    return view('users.kelompokedit', ['id' => $id]);
+});

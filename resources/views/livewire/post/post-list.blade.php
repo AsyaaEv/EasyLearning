@@ -32,11 +32,19 @@
                             </button>
                             <ul class="dropdown-menu">
                                 @foreach($post as $item)
-                                <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950" href="{{$item->id}}">{{$item->mapel}}</a></li>
+                                <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950" href="{{url('/dashboard/materi/'.$item->id)}}">{{$item->mapel}}</a></li>
                               @endforeach
                             </ul>
                         </div>
                 </div>
+                <a href="{{url('/dashboard/kelompok')}}">
+                    <div class="w-auto h-auto container mx-auto flex pl-[2rem] items-center gap-[15px]  hover:scale-[1.05] transition-all hover:cursor-pointer">
+                        <div class="w-full h-auto flex gap-[15px]  p-2 rounded-[10px] hover:bg-blue-900">
+                            <i class="bi bi-people text-white text-2xl"></i>
+                            <div class="text-white font-semibold text-xl">Anggota</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="w-[80%] h-auto flex justify-center items-center">
