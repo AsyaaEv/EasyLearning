@@ -27,8 +27,8 @@ class PostList extends Component
     {
         $this->data = Kategori::find($id);
         $this->cover = $this->data->cover;
-        if (Storage::exists('public/'.$this->cover)) {
-            Storage::delete('public/'.$this->cover);
+        if (Storage::exists('public/' . $this->cover)) {
+            Storage::delete('public/' . $this->cover);
         }
         $this->data->delete();
     }

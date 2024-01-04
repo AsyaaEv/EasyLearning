@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\addMateriController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -18,7 +19,9 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::view('/', 'posts.index');
 Route::view('/kategori', 'posts.kategori');
+Route::view('/admin', 'posts.list')->middleware(Authenticate::class);
 Route::view('/dashboard', 'posts.list');
+Route::view('/login', 'posts.login')->name('login');
 Route::view('/dashboard/add', 'posts.kategoriadd');
 Route::get('/dashboard/detail/{id}', function($id){
     return view('posts.detail', ['id' => $id]);

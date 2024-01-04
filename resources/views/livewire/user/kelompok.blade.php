@@ -34,10 +34,11 @@
                             <div class="text-white font-semibold text-xl">Materi</div>
                         </button>
                         <ul class="dropdown-menu">
-                            @foreach ($post as $item)
-                                <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950"
-                                        href="{{ url('/dashboard/materi/' . $item->id) }}">{{ $item->mapel }}</a></li>
-                            @endforeach
+                            @forelse($post as $item)
+                            <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950" href="{{url('/dashboard/materi/'.$item->id)}}">{{$item->mapel}}</a></li>
+                            @empty
+                            <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950">Belum Ada Mapel</a></li>
+                            @endforelse
                         </ul>
                     </div>
                 </div>
@@ -67,7 +68,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="w-full h-full flex gap-[10px] px-4 mt-2 flex-wrap pb-[3rem]" >
+                <div class="w-full h-full flex gap-[10px] px-4 mt-2 justify-center flex-wrap pb-[3rem]" >
                     @forelse ($kelompok as $data)
                     <div class="w-[45%] h-[15rem] bg-blue-950 rounded-[10px] flex">
                         <div class="w-full h-full flex justify-center items-center">
@@ -75,15 +76,15 @@
                         </div>
                         <div class="w-full h-full flex gap-[10px] flex-col py-3 ">
                             <div class="w-full h-full bg-white rounded-[10px] flex justify-center items-center font-bold text-blue-950 text-xl gap-[10px]">
-                                <i class="bi bi-person text-3xl text-blue-950 absolute -translate-x-[8rem]"></i>
+                                <i class="bi bi-person text-3xl text-blue-950 absolute mr-[13rem]"></i>
                                 <div class="">{{$data->nama}}</div>
                             </div>
                             <div class="w-full h-full bg-white rounded-[10px] flex justify-center items-center font-bold text-blue-950 text-xl gap-[10px]">
-                                <i class="bi bi-list-task text-3xl text-blue-950 absolute -translate-x-[8rem]"></i>
+                                <i class="bi bi-list-task text-3xl text-blue-950 absolute mr-[13rem]"></i>
                                 <div class="">{{$data->role}}</div>
                             </div>
                             <div class="w-full h-full bg-white rounded-[10px] flex justify-center items-center font-bold text-blue-950 text-xl gap-[10px]">
-                                <i class="bi bi-instagram text-3xl text-blue-950 absolute -translate-x-[8rem]"></i>
+                                <i class="bi bi-instagram text-3xl text-blue-950 absolute mr-[13rem]"></i>
                                 <div class="">{{$data->username}}</div>
                             </div>
                         </div>
@@ -91,7 +92,24 @@
                             <a href="{{url('/dashboard/kelompok/edit/' .$data->id)}}">
                                 <i class="bi bi-pencil text-2xl text-green-500"></i>
                             </a>
-                            <i class="bi bi-trash text-2xl text-red-500"></i>
+                            <button data-bs-toggle="modal" data-bs-target="#deletekategori{{$data->id}}"><i class="bi bi-trash text-xl text-red-500"></i></button>
+                              <div class="modal fade " id="deletekategori{{$data->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Anggota</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                              Apakah anda yakin ingin menghapus bio <b>{{$data->nama}}</b>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary bg-slate-600" data-bs-dismiss="modal">Cancel</button>
+                                              <button type="button" wire:click="deleteanggota({{$data->id}})" data-bs-dismiss="modal" class="btn btn-primary bg-blue-950">Delete</button>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
                         </div>
                     </div>
                     @empty

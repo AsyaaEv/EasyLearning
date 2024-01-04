@@ -53,18 +53,18 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label for="" class="font-bold text-2xl text-blue-950 mt-[1rem]">{{ __('Foto') }}</label>
-                <input type="file" class="form-control @error('foto') is-invalid @enderror" wire:model="foto">
+                <label for="" class="font-bold text-2xl text-blue-950 mt-[1rem]">{{ __('Cover') }}</label>
+                <input type="file" class="form-control @error('cover') is-invalid @enderror" wire:model="cover">
                 <div class="invalid-feedback">
-                    @error('foto')
+                    @error('cover')
                         {{ $message }}
                     @enderror
                 </div>
                 <div class="flex gap-[10px]">
-                    <img src="{{ Storage::url($fotoUser) }}" alt="" class="mt-3"
+                    <img src="{{ Storage::url($fotoUser) }}" alt="" class="mt-3 object-cover"
                         style="width: 100px; height:100px;">
-                    @if ($fotos)
-                        <img src="{{ $fotos->temporaryUrl() }}" alt="" class="mt-3"
+                    @if ($cover)
+                        <img src="{{ $cover->temporaryUrl() }}" alt="" class="mt-3 object-cover"
                             style="width: 100px; height:100px;">
                     @endif
                 </div>

@@ -8,7 +8,7 @@ use Livewire\WithFileUploads;
 
 class Kelompokadd extends Component
 {
-    public $fotos;
+    public $cover;
     public function render()
     {
         return view('livewire.user.kelompokadd');
@@ -21,8 +21,8 @@ class Kelompokadd extends Component
     public $username;
     public function submitAnggota(){
         $input = $this->validate([
-            'nama' => 'required',
-            'role' => 'required',
+            'nama' => 'required|max:10',
+            'role' => 'required|max:20',
             'username' => 'required',
             'foto' => 'required|max:7000|image',
         ]);

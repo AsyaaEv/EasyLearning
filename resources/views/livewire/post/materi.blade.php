@@ -42,6 +42,14 @@
                         </ul>
                     </div>
                 </div>
+                <a href="{{url('/dashboard/kelompok')}}">
+                    <div class="w-auto h-auto container mx-auto flex pl-[2rem] items-center gap-[15px]  hover:scale-[1.05] transition-all hover:cursor-pointer">
+                        <div class="w-full h-auto flex gap-[15px]  p-2 rounded-[10px] hover:bg-blue-900">
+                            <i class="bi bi-people text-white text-2xl"></i>
+                            <div class="text-white font-semibold text-xl">Anggota</div>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
         <div class="w-[80%] h-auto flex justify-center items-center">

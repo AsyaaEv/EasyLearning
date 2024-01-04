@@ -27,8 +27,7 @@ class Kelompokedit extends Component
         $this->role = $this->data->role;
         $this->foto = $this->data->foto;
         $fotoUser = $this->foto;
-        $fotos = $this->fotos;
-        return view('livewire.user.kelompokedit', compact('fotoUser', 'fotos'));
+        return view('livewire.user.kelompokedit', compact('fotoUser'));
     }
 
     public function kelompokEdit(){
@@ -39,10 +38,10 @@ class Kelompokedit extends Component
         $post->username = $this->username;
 
 
-        if($this->fotos == null){
+        if($this->cover == null){
             $post->foto = $this->foto;
         } else {
-            $gambar = $this->fotos->store('images', 'public');
+            $gambar = $this->cover->store('images', 'public');
             $post->foto = $gambar;
             if (Storage::exists('public/'.$this->foto)) {
                 Storage::delete('public/'.$this->foto);

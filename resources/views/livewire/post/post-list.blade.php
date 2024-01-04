@@ -31,9 +31,11 @@
                                 <div class="text-white font-semibold text-xl">Materi</div>
                             </button>
                             <ul class="dropdown-menu">
-                                @foreach($post as $item)
+                                @forelse($post as $item)
                                 <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950" href="{{url('/dashboard/materi/'.$item->id)}}">{{$item->mapel}}</a></li>
-                              @endforeach
+                                @empty
+                                <li><a class="dropdown-item w-auto h-auto font-semibold hover:bg-blue-900 mx-2 rounded-[10px] hover:text-white text-blue-950">Belum Ada Mapel</a></li>
+                                @endforelse
                             </ul>
                         </div>
                 </div>
@@ -55,7 +57,7 @@
                     </div>
                     <div class="flex justify-center items-center">
                         <a href="{{url('/dashboard/add')}}">
-                        <div class="w-[10rem] h-[3rem] bg-blue-950 rounded-[10px] flex justify-center items-center shadow-lg mr-8">
+                        <div class="w-[10rem] h-[3rem] bg-blue-950 rounded-[10px] flex justify-center items-center shadow-md mr-8">
                             <div class="font-bold text-white">Add Mapel</div>
                         </div>
                     </a>

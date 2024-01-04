@@ -62,9 +62,17 @@ class addMateriController extends Controller
     public function update(Request $request, $id)
     {
         $post = Mapel::find($id);
+        $data = $post->tumbnail;
+        $kategori = $post->kategori;
  
-        $data = Kategori::where('mapel',$request->kategori)->get();
-        $tumbnail = $data->first()->cover;
+        if($request->kategori == true){
+            $data = Kategori::where('mapel',$request->kategori)->get();
+            $kategori = $request->kategori;
+            $tumbnail = $data->first()->cover;
+        } else {
+            $tumbnail = $data;
+            $kategori = $kategori;
+        }
         $description = $request->content;
  
         $dom = new DOMDocument();
@@ -91,7 +99,7 @@ class addMateriController extends Controller
         $post->update([
             'judul' => $request->judul,
             'content' => $description,  
-            'kategori' => $request->kategori,
+            'kategori' => $kategori,
             'tumbnail' => $tumbnail,
         ]);
  

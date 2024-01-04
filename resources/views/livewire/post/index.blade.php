@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="w-auto h-full flex justify-center items-center px-[3rem]">
-            <a href="{{ url('/' . '#mapel') }}">
+            <a href="{{ url('/' . '#kategori') }}">
                 <div class="w-[10rem] h-[3.5rem] rounded-[10px] bg-white flex justify-center items-center hover:scale-[1.1] transition-all hover:cursor-pointer"
                     id="div">
                     <div class="font-semibold text-blue-950" id="button">Get Started</div>
@@ -44,7 +44,7 @@
                     terpercaya. Dengan pembahasan yang mudah dimengerti</div>
             </div>
             <div class="w-full h-auto flex justify-center items-center">
-                <a href="{{ url('/' . '#mapel') }}">
+                <a href="{{ url('/' . '#kategori') }}">
                     <div
                         class="w-[10rem] h-[3.5rem] rounded-[10px]  bg-blue-950 flex justify-center items-center hover:scale-[1.1] transition-all hover:cursor-pointer">
                         <div class="font-semibold text-white">Get Started</div>
@@ -197,7 +197,7 @@
             <a href="https://instagram.com/{{$data->username}}"  >
                 <div class="w-[25rem] h-[20rem] bg-white rounded-[10px] shadow-md overflow-hidden group">
                     <img src="{{ Storage::url($data->foto) }}" alt=""
-                        class="objec-cover w-[25rem] h-[20rem] rounded-[10px]">
+                        class="object-cover w-[25rem] h-[20rem] rounded-[10px] grayscale blur-sm hover:grayscale-0 hover:blur-none transition-all">
                     <div
                         class="w-full h-[7rem] -translate-y-[5rem] bg-gradient-to-t from-blue-950 px-4 group-hover:-translate-y-[7rem] group-hover:transition-all">
                         <div class="font-bold text-lg text-white pt-[2.5rem]">{{$data->nama}}</div>

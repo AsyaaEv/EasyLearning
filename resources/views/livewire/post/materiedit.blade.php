@@ -86,12 +86,13 @@
                     </a>
                 </div>
                 <div class="w-auto h-full flex items-center px-[3rem]">
-                    <div class="font-bold text-2xl text-white outline-none" id="judul">Add Materi</div>
+                    <div class="font-bold text-2xl text-white outline-none" id="judul">Edit Materi</div>
                 </div>
                 <div class="w-auto h-full px-[3rem] flex items-center justify-center">
                     <div class="flex gap-[15px]">
                         <div class="text-center font-bold text-xl text-white">EasyLearning</div>
                     </div>
+                    
                 </div>
             </div>
             <div class="w-full h-auto bg-white rounded-[10px] shadow-md container mx-auto mt-[3rem]">

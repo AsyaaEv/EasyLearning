@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="w-full h-[30rem] bg-white rounded-[10px] shadow-md container mx-auto mt-[3rem]">
+    <div class="w-full h-auto bg-white rounded-[10px] shadow-md container mx-auto mt-[3rem]">
         <div class="mt-5">
             <div class="alert @if (!empty(session('alert'))) alert-{{ session('alert') }} @else d-none @endif">
                 @if (!empty(session('alert')))
@@ -52,19 +52,16 @@
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label for="" class="font-bold text-2xl text-blue-950 mt-[1rem]">{{ __('Foto') }}</label>
-                <input type="file" class="form-control @error('foto') is-invalid @enderror" wire:model="foto">
+                <label for="" class="font-bold text-2xl text-blue-950 mt-[1rem]">{{ __('Cover') }}</label>
+                <input type="file" class="form-control @error('cover') is-invalid @enderror" wire:model="cover">
                 <div class="invalid-feedback">
-                    @error('foto')
-                        {{ $message }}
-                    @enderror
+                    @error('cover') {{ $message }} @enderror
                 </div>
-                @if ($fotos)
-                    <img src="{{ $foto->temporaryUrl() }}" alt="" class="mt-3"
-                        style="width: 100px; height:100px;">
+                @if($cover)
+                    <img src="{{ $cover->temporaryUrl()}}" alt="" class="mt-3 object-cover" style="width: 100px; height:100px;">
                 @endif
             </div>
-            <button class="btn btn-primary btn-sm">{{ __('Save') }}</button>
+            <button class="btn btn-primary btn-sm mb-4">{{ __('Save') }}</button>
         </form>
     </div>
 </div>
