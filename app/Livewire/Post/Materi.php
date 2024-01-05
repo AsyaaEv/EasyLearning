@@ -12,9 +12,15 @@ class Materi extends Component
     public function render()
     {
         $data = Kategori::find($this->id);
+        $dataID = $data->id;
         $mapel = $data->mapel;
         $post = Mapel::where('kategori', $mapel)->orderBy('id', 'desc')->get();
         $data = Kategori::orderBy('id', 'desc')->get();
-        return view('livewire.post.materi', compact('post', 'mapel','data'));
+
+        foreach($post as $item){
+            $tanggal = $item->created_at;
+            $tgl = $tanggal->format('j F Y');
+        }
+        return view('livewire.post.materi', compact('post', 'mapel','data','dataID', 'tgl'));
     }
 }

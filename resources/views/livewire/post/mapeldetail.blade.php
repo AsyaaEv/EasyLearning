@@ -45,7 +45,7 @@
                 <div class="w-full h-[31.5rem] flex">
                     <div class="w-[70%] h-full flex justify-center items-center">
                         <img src="{{ Storage::url($item->tumbnail) }}" alt=""
-                            class="w-[90%] h-[90%] object-cover shadow-md">
+                            class="w-[90%] h-[90%] object-contain shadow-md">
                     </div>
                     <div class="w-[30%] h-full flex flex-col justify-center gap-[15px]">
                         <div class="w-full h-auto flex flex-col">
@@ -54,7 +54,7 @@
                         </div> 
                         <div class="w-full h-auto flex flex-col">
                             <div class="text-blue-950 font-bold text-2xl">Uploaded</div>
-                            <div class="text-blue-950 font-medium text-xl">{{ $item->created_at }}</div>
+                            <div class="text-blue-950 font-medium text-xl">{{ $tgl }}</div>
                         </div>
                     </div>
                 </div>

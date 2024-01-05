@@ -86,37 +86,56 @@
                     </a>
                 </div>
                 <div class="w-auto h-full flex items-center px-[3rem]">
-                    <div class="font-bold text-2xl text-white outline-none" id="judul">Edit Materi</div>
+                    <div class="font-bold text-2xl text-white outline-none" id="judul">Edit Materi
+                        {{ $data->kategori }}</div>
                 </div>
                 <div class="w-auto h-full px-[3rem] flex items-center justify-center">
                     <div class="flex gap-[15px]">
                         <div class="text-center font-bold text-xl text-white">EasyLearning</div>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="w-full h-auto bg-white rounded-[10px] shadow-md container mx-auto mt-[3rem]">
                 <div class="container mt-5">
-                    <form action="{{url('/dashboard/materi/edit/proses/' .$data->id)}}" enctype="multipart/form-data" method="post">
+                    <form action="{{ url('/dashboard/materi/edit/proses/' . $data->id) }}" enctype="multipart/form-data"
+                        method="post">
                         @csrf
                         <label for="" class="mt-[1rem] font-semibold text-blue-950 text-lg">Judul:</label>
-                        <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" value="{{$data->judul}}">
+                        <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul"
+                            value="{{ $data->judul }}">
                         <div class="invalid-feedback">
                             @error('judul')
                                 {{ $message }}
                             @enderror
                         </div>
                         <label for="" class="mt-[1rem] font-semibold text-blue-950 text-lg">Content:</label>
-                        <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="summernote" cols="30" rows="10">{{$data->content}}</textarea>
+                        <textarea name="content" class="form-control @error('content') is-invalid @enderror" id="summernote" cols="30"
+                            rows="10">{{ $data->content }}</textarea>
                         <div class="invalid-feedback">
                             @error('content')
                                 {{ $message }}
                             @enderror
                         </div>
-                        <select name="kategori" id="" class="w-[15rem] h-[3rem] bg-blue-950 rounded-[10px] px-4 text-white @error('kategori') is-invalid @enderror">
-                            <option value="" selected disabled>===Pilih Mapel===</option>
-                            @foreach ($dataKategori as $item)
-                                <option value="{{$item->mapel}}" class="text-white">{{$item->mapel}}</option>
+                        <label for="" class="mt-[1rem] font-semibold text-blue-950 text-lg">Tumbnail:</label>
+                        <input type="file" name="tumbnail"
+                            class="form-control @error('tumbnail') is-invalid @enderror">
+                        <div class="invalid-feedback">
+                            @error('tumbnail')
+                                {{ $message }}
+                            @enderror
+                        </div>
+                        <img src="{{ Storage::url($data->tumbnail) }}" alt="" class="mt-3 object-contain"
+                            style="width: 100px; height:100px;">
+                            <select name="kategori" id=""
+                                class="w-[15rem] h-[3rem] bg-blue-950 rounded-[10px] px-4 text-white @error('kategori') is-invalid @enderror">
+                                @foreach ($dataKategori as $item)
+                                    @if ($item->mapel == $data->kategori)
+                                        <option value="{{ $item->mapel }}" selected disabled>{{ $item->mapel }}</option>
+                                    @else
+                                        <option value="{{ $item->mapel }}" class="text-white">{{ $item->mapel }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             </select>
                         <div class="invalid-feedback">
@@ -124,6 +143,8 @@
                                 {{ $message }}
                             @enderror
                         </div>
+
+                        <input type="text" value="{{ $kategoriID }}" hidden name="id">
                         <button type="submit" class="btn btn-lg btn-primary bg-blue-950 my-[1rem]">Submit</button>
                     </form>
                 </div>
@@ -131,20 +152,20 @@
         </div>
     </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('#summernote').summernote({
-                            height: 300,
-                        });
-                    });
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-                </script>
-                @livewireScripts
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs5.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                height: 300,
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+    </script>
+    @livewireScripts
 </body>
 
 </html>

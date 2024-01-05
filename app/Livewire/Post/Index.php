@@ -15,6 +15,13 @@ class Index extends Component
     {
         $kelompok = Kelompok::all();
         $posts = Kategori::where('mapel', 'like', '%' . $this->keyword . '%')->paginate(3);
-        return view('livewire.post.index', compact('posts', 'kelompok'));
+
+        //tanggal
+        foreach($posts->items() as $item){
+            $tanggal = $item->created_at;
+            $tgl = $tanggal->format('j F Y');
+        }
+        return view('livewire.post.index', compact('posts', 'kelompok', 'tgl'));
     }
+
 }

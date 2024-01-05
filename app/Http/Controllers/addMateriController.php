@@ -9,28 +9,41 @@ use Livewire\Features\SupportFileUploads\WithFileUploads;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class addMateriController extends Controller
 {
-
-    public function index(){
+    public $post;
+    public function index($id){
         $data = Kategori::all();
-        return view('livewire.post.materiadd', compact('data'));
+        $this->post = Kategori::find($id);
+        $post = $this->post;
+        return view('livewire.post.materiadd', compact('data', 'post'));
     }
     public function edit($id)
     {
         $data = Mapel::find($id);
+        $kategori = $data->kategori;
+        $kategoriMapel = Kategori::where('mapel', $kategori)->first();
+        $kategoriID = $kategoriMapel->id;
         $dataKategori = Kategori::all();
-        return view('livewire.post.materiedit',compact('data', 'dataKategori'));
+        // $id = $dataKategori->id;
+        return view('livewire.post.materiedit',compact('data', 'dataKategori', 'kategoriID'));
     }
     public function store(Request $request)
     {
+        
         $request->validate([
-            'kategori' => 'required'
+            'judul' => 'required',
+            'content' => 'required',
+            'kategori' => 'required',
+            'tumbnail' => 'required',
         ]);
-        $data = Kategori::where('mapel',$request->kategori)->get();
-        $post = $data->first()->cover;
+        // $data = Kategori::where('mapel',$request->kategori)->get();
+        // $post = $data->first()->cover;
+
+        $tumbnail = $request->tumbnail->store('tumbnail', 'public');
         $description = $request->content;
  
         $dom = new DOMDocument();
@@ -53,42 +66,30 @@ class addMateriController extends Controller
             'judul' => $request->judul,
             'content' => $description,
             'kategori' => $request->kategori,
-            'tumbnail' => $post,
+            'tumbnail' => $tumbnail,
         ]);
+
+        $id = $request->id;
  
-        return redirect('/dashboard');
+        return redirect('/dashboard/materi/' .$id);
     }
 
     public function update(Request $request, $id)
     {
         $post = Mapel::find($id);
-        $data = $post->tumbnail;
         $kategori = $post->kategori;
- 
-        if($request->kategori == true){
-            $data = Kategori::where('mapel',$request->kategori)->get();
-            $kategori = $request->kategori;
-            $tumbnail = $data->first()->cover;
-        } else {
-            $tumbnail = $data;
-            $kategori = $kategori;
-        }
+        $data = $post->tumbnail;
         $description = $request->content;
  
         $dom = new DOMDocument();
         $dom->loadHTML($description,9);
- 
         $images = $dom->getElementsByTagName('img');
- 
         foreach ($images as $key => $img) {
- 
-            // Check if the image is a new one
             if (strpos($img->getAttribute('src'),'data:image/') ===0) {
                
                 $data = base64_decode(explode(',',explode(';',$img->getAttribute('src'))[1])[1]);
                 $image_name = "/upload/" . time(). $key.'.png';
                 file_put_contents(public_path().$image_name,$data);
-                 
                 $img->removeAttribute('src');
                 $img->setAttribute('src',$image_name);
             }
@@ -96,14 +97,35 @@ class addMateriController extends Controller
         }
         $description = $dom->saveHTML();
  
+        //tumbnail
+        if($request->tumbnail == null){
+            $tumbnail = $post->tumbnail;
+        } else {
+            $tumbnailLama = $post->tumbnail;
+            $tumbnail = $request->tumbnail->store('tumbnail','public');
+                Storage::delete('public/' . $tumbnailLama);
+             $post->tumbnail = $tumbnail;
+
+        }
+
+        //Kategori
+        if($request->kategori == null){
+
+            $valueKategori = $kategori;
+
+        } else {
+            $valueKategori = $request->kategori;
+        }
+
         $post->update([
             'judul' => $request->judul,
             'content' => $description,  
-            'kategori' => $kategori,
+            'kategori' => $valueKategori,
             'tumbnail' => $tumbnail,
         ]);
  
-        return redirect('/dashboard');
+        $idD = $request->id;
+        return redirect('/dashboard/materi/'.$idD);
  
     }
 

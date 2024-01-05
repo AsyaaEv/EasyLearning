@@ -54,7 +54,7 @@
                     <div class="w-[25rem] h-[30rem] bg-blue-950 rounded-[10px] shadow-md mx-[1rem]">
                         <img src="{{ Storage::url($items->tumbnail) }}" alt="..."
                             class="w-full h-[15rem] object-cover rounded-t-[10px]">
-                        <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $items->created_at }}</div>
+                        <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $tgl }}</div>
                         <div class="text-white text-2xl font-semibold ml-[2rem] mt-[1rem]">{{ $items->judul }}</div>
                     </div>
                 </a>

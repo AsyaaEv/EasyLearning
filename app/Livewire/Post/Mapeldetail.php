@@ -14,6 +14,10 @@ class Mapeldetail extends Component
     public function render()
     {
         $post = Mapel::where('id', $this->id)->get();
-        return view('livewire.post.mapeldetail', compact('post'));
+        foreach($post as $item){
+            $tanggal = $item->created_at;
+            $tgl = $tanggal->format('j F Y');
+        }
+        return view('livewire.post.mapeldetail', compact('post', 'tgl'));
     }
 }

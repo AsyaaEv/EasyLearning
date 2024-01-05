@@ -26,7 +26,7 @@ Route::view('/dashboard/add', 'posts.kategoriadd');
 Route::get('/dashboard/detail/{id}', function($id){
     return view('posts.detail', ['id' => $id]);
 });
-Route::get('/dashboard/materi/add', [addMateriController::class, 'index']);
+Route::get('/dashboard/materi/add/{id}', [addMateriController::class, 'index']);
 Route::get('/dashboard/materi/edit/{id}', [addMateriController::class, 'edit']);
 Route::post('/dashboard/materi/edit/proses/{id}', [addMateriController::class, 'update']);
 Route::post('/dashboard/materi/add/proses', [addMateriController::class, 'store']);

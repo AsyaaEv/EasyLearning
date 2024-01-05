@@ -59,7 +59,7 @@
                         Materi {{$mapel}}
                     </div>
                     <div class="flex justify-center items-center">
-                        <a href="{{ url('/dashboard/materi/add') }}">
+                        <a href="{{ url('/dashboard/materi/add/'. $dataID) }}">
                             <div
                                 class="w-[10rem] h-[3rem] bg-blue-950 rounded-[10px] flex justify-center items-center shadow-md mr-8">
                                 <div class="font-bold text-white">Add Materi</div>
@@ -72,6 +72,7 @@
                         <thead>
                           <tr>
                             <th scope="col" class="table-primary">#ID</th>
+                            <th scope="col" class="table-primary">Tumbnail</th>
                             <th scope="col" class="table-primary">Judul</th>
                             <th scope="col" class="table-primary">Action</th>
                           </tr>
@@ -80,6 +81,7 @@
                     @forelse ($post as $item)
                         <tr>
                             <th scope="row">{{ $item->id }}</th>
+                            <td><img src="{{Storage::url($item->tumbnail)}}" alt="" class="w-[5rem] h-[5rem] object-contain"></td>
                             <td>{{ $item->judul }}</td>
                             <td>
                                 <a href="{{ url('/dashboard/materi/edit/' . $item->id) }}"><i

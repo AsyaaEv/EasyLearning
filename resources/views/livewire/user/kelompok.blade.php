@@ -17,8 +17,8 @@
             <div class="w-full h-auto py-[2rem] flex flex-col gap-[10px]">
                 <a href="{{ url('/dashboard') }}">
                     <div
-                        class="w-auto h-auto container mx-auto flex pl-[2rem] items-center gap-[15px] hover:scale-[1.05] transition-all hover:cursor-pointer">
-                        <div class="w-full h-auto flex gap-[15px]  p-2 rounded-[10px]">
+                        class="w-auto h-auto container mx-auto flex pl-[2rem] items-center gap-[15px] group hover:scale-[1.05] transition-all hover:cursor-pointer">
+                        <div class="w-full h-auto flex gap-[15px]  p-2 rounded-[10px] group-hover:bg-blue-900">
                             <i class="bi bi-columns text-white text-2xl"></i>
                             <div class="text-white font-semibold text-xl">Dashbord</div>
                         </div>

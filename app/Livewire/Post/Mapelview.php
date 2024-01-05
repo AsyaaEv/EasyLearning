@@ -17,7 +17,11 @@ class Mapelview extends Component
         $this->data = Kategori::find($this->id);
         $this->mapel = $this->data->mapel;
        $post = Mapel::where('kategori', $this->mapel)->where('judul', 'like', '%' . $this->keyword . '%')->get();
-        return view('livewire.post.mapelview', compact('post'));
+       foreach($post as $item){
+        $tanggal = $item->created_at;
+        $tgl = $tanggal->format('j F Y');
+    }
+        return view('livewire.post.mapelview', compact('post', 'tgl'));
     }
 
 }

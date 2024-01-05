@@ -41,3 +41,4 @@ class Kategoriedit extends Component
         return redirect('/dashboard');
     }
 }
+

@@ -150,7 +150,7 @@
                 <div class="w-[25rem] h-[27rem] bg-blue-950 rounded-[10px] mx-[1rem]">
                     <img src="{{ Storage::url($items->cover) }}" alt=""
                         class="w-full h-[15rem] object-cover rounded-t-[10px]">
-                    <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $items->created_at }}</div>
+                    <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $tgl }}</div>
                     <div class="text-white text-3xl font-semibold ml-[2rem] mt-[1rem]">{{ $items->mapel }}</div>
                     <div class="w-full h-auto ml-[2rem] mt-[1rem]">
                         <a href="{{ url('/mapel/' . $items->id) }}">

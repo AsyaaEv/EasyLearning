@@ -33,7 +33,7 @@
             </a>
         </div>
     </div>
-    <div class="w-full h-[35rem] container mx-auto bg-white rounded-[10px] mt-[2rem] shadow-lg flex flex-col gap-[10px] justify-center items-center pb-[2rem]">
+    <div class="w-full h-[55rem] container mx-auto bg-white rounded-[10px] mt-[2rem] shadow-lg flex flex-col gap-[10px] justify-center items-center pb-[2rem]">
         <div class="w-full h-auto flex justify-between">
             <div class="w-full h-auto flex gap-2 mt-2 ml-4 mb-[2rem]">
                 <a href="{{ url('/' . '#kategori') }}">
@@ -43,12 +43,12 @@
             </div>
             <div class="">{{$posts->links()}}</div>
         </div>
-        <div class="w-full h-auto overflow-auto flex flex-wrap justify-center items-center gap-[10px]">
+        <div class="w-full h-auto overflow-auto my-[1rem] flex flex-wrap justify-center items-center gap-[10px]">
             @forelse ($posts as $item)
             <div class="w-[25rem] h-[27rem] bg-blue-950 rounded-[10px] mx-[1rem]">
                 <img src="{{ Storage::url($item->cover) }}" alt=""
                 class="w-full h-[15rem] object-cover rounded-t-[10px]">
-                <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $item->created_at }}</div>
+                <div class="text-white text-md font-medium ml-[2rem] mt-[1rem]">{{ $tgl }}</div>
                 <div class="text-white text-3xl font-semibold ml-[2rem] mt-[1rem]">{{ $item->mapel }}</div>
                 <div class="w-full h-auto ml-[2rem] mt-[1rem]">
                     <a href="{{ url('/mapel/' . $item->id) }}">
